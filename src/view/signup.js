@@ -22,7 +22,9 @@ class Signup extends React.Component<Props> {
 
     if (key === 'confirmPassword') {
       let password = this.state.password
-      if (password !== value) {
+      if (value === '') {
+        stateObj.confirmPasswordError = false;
+      } else if (password !== value) {
         stateObj.confirmPasswordError = true;
       } else {
         stateObj.confirmPasswordError = false;

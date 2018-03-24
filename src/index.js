@@ -30,6 +30,7 @@ class Index extends React.Component<Props> {
 		}
 		return (
 			<div className="main">
+				<div className="header">JobSearch Tracker</div>
 				<div className="choiceBtns">
 					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.LOGIN)}><i className="material-icons left">
 						cloud</i>Login
