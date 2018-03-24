@@ -9,6 +9,8 @@ const {
   Router,
 } = require('react-router');
 import Index from './index';
+import Login from './view/login';
+import Signup from './view/signup';
 
 type Props = {||};
 
@@ -16,7 +18,10 @@ class App extends React.Component<Props> {
 	render() {
 		return (
 			<Router history={browserHistory}>
-					<Route path="/" component={Index}/>
+					<Route path="/" component={Index}>
+						<Route path="login" component={Login} />
+						<Route path="signup" component={Signup}/>
+					</Route>
 			</Router>
 		)
 	}
