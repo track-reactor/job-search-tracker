@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {browserHistory} from 'react-router';
+import constants from './constants/constants';
 //css
 require('./css/index.css');
 
@@ -9,20 +10,15 @@ type Props = {
 	children: any
 };
 
-const choiceBtns = {
-	SIGNUP: 'SIGNUP',
-	LOGIN: 'Login',
-}
-
 class Index extends React.Component<Props> {
 	_loginClickHandler() {
 		browserHistory.push('/dashboard/statistics');
 	}
 
 	_buttonChoiceClick(choice) {
-		if (choice === choiceBtns.LOGIN) {
+		if (choice === constants.choiceBtns.LOGIN) {
 			browserHistory.push('/login');
-		} else if (choice === choiceBtns.SIGNUP) {
+		} else if (choice === constants.choiceBtns.SIGNUP) {
 			browserHistory.push('/signup');
 		}
 	}
@@ -35,10 +31,10 @@ class Index extends React.Component<Props> {
 		return (
 			<div className="main">
 				<div className="choiceBtns">
-					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, choiceBtns.SIGNUP)}><i className="material-icons left">
+					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.SIGNUP)}><i className="material-icons left">
 						cloud</i>Sign-Up
 					</a>
-					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, choiceBtns.LOGIN)}><i className="material-icons left">
+					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.LOGIN)}><i className="material-icons left">
 						cloud</i>Login
 					</a>
 				</div>
