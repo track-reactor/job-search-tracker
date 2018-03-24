@@ -31,11 +31,11 @@ class Index extends React.Component<Props> {
 		return (
 			<div className="main">
 				<div className="choiceBtns">
-					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.SIGNUP)}><i className="material-icons left">
-						cloud</i>Sign-Up
-					</a>
 					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.LOGIN)}><i className="material-icons left">
 						cloud</i>Login
+					</a>
+					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.SIGNUP)}><i className="material-icons left">
+						cloud</i>Sign-Up
 					</a>
 				</div>
 				<div className="row mainContainer">
