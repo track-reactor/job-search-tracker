@@ -1,7 +1,7 @@
 
 const constants = {
   choiceBtns: {
-    SINGUP: 'SINGUP',
+    SIGNUP: 'SIGNUP',
     LOGIN: 'LOGIN',
   }
 }
