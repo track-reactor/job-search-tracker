@@ -36,6 +36,7 @@ class Signup extends React.Component<Props> {
 	render() {
     const { userName, password, confirmPassword, confirmPasswordError } = this.state;
     console.log(this.state)
+    
 		return (
       <div>
       <div className="row">

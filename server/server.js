@@ -14,6 +14,9 @@ app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, '../dist/index.html'))
 })
 //Router for Server
+app.post('/', function(req, res) {
+	console.log('POST REQ', req);
+})
 
 
 app.listen(PORT, () => {

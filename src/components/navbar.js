@@ -4,6 +4,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 //css
 
+require('../css/navBar.css');
+
 type Props = {||};
 
 class NavBar extends React.Component<Props> {
@@ -21,10 +23,13 @@ class NavBar extends React.Component<Props> {
 		return (
       <nav>
          <div className="nav-wrapper teal">
-          <a href="#!" className="brand-logo"><i className="large material-icons">assignment</i>JobSearch Tracker</a>
-           <ul id="nav-mobile" className="right hide-on-med-and-down">
-             <li><a>User</a></li>
-           </ul>
+          <a href="#!" className="main-header brand-logo">
+            <i className="large material-icons">assignment</i>
+            JobSearch Tracker
+          </a>
+         <ul id="nav-mobile" className="right">
+           <li><a>User</a></li>
+         </ul>
          </div>
        </nav>
 		)
