@@ -1,5 +1,6 @@
 import React from 'React';
 import $ from 'jquery';
+import {postRequest, getRequest} from '../utils/APIUtils';
 
 require('../css/resumeTracker.css');
 
@@ -14,6 +15,10 @@ class ResumeTracker extends React.Component {
     }
   }
 
+  componentDidMount() {
+
+  }
+
   _onInputChange(value, key) {
     let stateObj = { [key]:value };
     this.setState(stateObj)
@@ -25,22 +30,12 @@ class ResumeTracker extends React.Component {
       inputUser: this.state.inputUser,
       inputStatus: this.state.inputStatus
     }
-    console.log('Success POST! Data: ', payLoad);
-    $.ajax({
-      type:'POST',
-      url:'/',
-      data: JSON.stringify(payLoad),
-      contentType: 'application/json',
-      success: (data) => {
-        console.log('Success POST! Data: ', data);
-        // this.setState({
-        //   tableUser: data.userName,
-        //   tableStatus: data.Status
-        // })
-      },
-      error: (error) => {
-        console.log('Failed GET! Error: ', error);
-      } 
+    // console.log('Success POST! Data: ', payLoad);
+    // postRequest('/login', payLoad, function(err, data) {
+    //   console.log(data);
+    // })
+    getRequest('/checker', (err, data) => {
+      console.log(data)
     })
   }
 

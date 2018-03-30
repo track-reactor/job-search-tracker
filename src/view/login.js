@@ -1,6 +1,8 @@
 /* @flow */
 
+import {browserHistory} from 'react-router';
 import React from 'react';
+import {postRequest} from '../utils/APIUtils';
 
 //css
 require('../css/login.css');
@@ -21,9 +23,26 @@ class Login extends React.Component<Props> {
     this.setState(stateObj)
   }
 
+  _loginClickHandler() {
+    let emptyCheck = (this.state.userName === '' || this.state.password === '')
+    if (!emptyCheck) {
+      let payLoad = {
+        username: this.state.userName,
+        password: this.state.password
+      }
+
+      postRequest('/login', payLoad, (err, data) => {
+        if (data.success) {
+          browserHistory.push('/dashboard/statistics');
+        } else {
+          // Error Message
+        }
+      })
+    }
+  }
+
 	render() {
     const { userName, password } = this.state;
-    console.log('LOGIN: ', this.state)
 		return (
 		  <div>
         <div className="row">
@@ -49,7 +68,17 @@ class Login extends React.Component<Props> {
             </input>
             <label for="userName">Password</label>
           </div>
-        </div>  
+        </div>
+        <div className="login-btn">
+          <button
+            className="btn waves-effect waves-light"
+            onClick={this._loginClickHandler.bind(this)}
+            type="submit"
+            name="action">
+            LOGIN
+              <i className="material-icons right">send</i>
+          </button>
+        </div>
       </div>
 		)
 	}

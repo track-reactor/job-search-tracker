@@ -11,9 +11,6 @@ type Props = {
 };
 
 class Index extends React.Component<Props> {
-	_loginClickHandler() {
-		browserHistory.push('/dashboard/statistics');
-	}
 
 	_buttonChoiceClick(choice) {
 		if (choice === constants.choiceBtns.LOGIN) {
@@ -41,16 +38,6 @@ class Index extends React.Component<Props> {
 				</div>
 				<div className="row mainContainer">
 				{children}
-				</div>
-				<div className="login-btn">
-					<button
-						className="btn waves-effect waves-light"
-						onClick={this._loginClickHandler.bind(this)}
-						type="submit"
-						name="action">
-						SEND
-							<i className="material-icons right">send</i>
-					</button>
 				</div>
 			</div>
 		)
