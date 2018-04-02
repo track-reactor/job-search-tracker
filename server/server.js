@@ -39,27 +39,59 @@ const isUserLoggedIn = function(req, res, next) {
 
 //Router for Server
 app.post('/login', function(req, res) {
-	console.log('POST REQ', req.body);
-	// GET the Data use user namename to query user table
+	console.log('Login POST REQ', req.body);
 
-	// On the result of the user see if the req.password is equal to the
-	// database one
-	var responseBool
-	//If yes 
-		responseBool = true;
-	//If no 
-		// responseBool = false;
+  var responseBool;
+	// GET the Data use username to query user table
+  var queryString = `SELECT username, password FROM users WHERE users.username = ${req.body.username}`
+	db.query(queryString, function(err, result) {
+		if (err) {
+			console.log('Login User Query error: ', err)
+		} else {
+      console.log('Success User QUERY: ', result)
+      if (result[0].password === req.body.password) {
+        responseBool = true;
+      } else {
+        responseBool = false
+      }
 
+    }
+	})
 	var userInfo = {
 		username: req.body.username,
-		userId: 1,
+		userId: 1, //??????
 	}
 	req.session.user = userInfo;
 
 	var responseObj = {
 		success: responseBool,
 	}
-	res.send(responseObj)
+	res.send(responseObj);
+})
+
+app.post('/signup', function(req, res) {
+  console.log('SignUp POST REQ: ', req.body)
+  var responseBool;
+  // query first, if username exsist
+  var queryString = `SELECT username FROM users WHERE users.username = ${req.body.username}`
+  db.query(queryString, function(err, result) {
+    if (err) {
+      console.log('Signup User Query Error: ', err)
+    } 
+    if (!result.length) {
+      var insertString = `INSERT INTO users (username, password) VALUES ("${req.body.username}", "${req.body.password}")`;
+      db.query(insertString, function(err, result) {
+        responseBool = true;
+      })
+    } else {
+      responseBool = false
+    }
+  })
+
+  var responseObj = {
+    success: responseBool,
+  }
+  res.send(responseObj);
 })
 
 app.get('/checker', function(req, res) {

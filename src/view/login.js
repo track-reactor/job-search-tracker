@@ -14,7 +14,8 @@ class Login extends React.Component<Props> {
     super(props);
     this.state = {
       userName: '',
-      password: ''
+      password: '',
+      errorMessage: ''
     }
   }
 
@@ -34,9 +35,14 @@ class Login extends React.Component<Props> {
 
     //   postRequest('/login', payLoad, (err, data) => {
     //     if (data.success) {
+    //       this.setState({
+    //         errorMessage: ''
+    //       })
     //       browserHistory.push('/dashboard/statistics');
     //     } else {
-    //       // Error Message
+    //       this.setState({
+    //         errorMessage: 'Incorrect Username or Password'
+    //       })
     //     }
     //   })
     // }
@@ -49,6 +55,7 @@ class Login extends React.Component<Props> {
     const { userName, password } = this.state;
 		return (
 		  <div>
+        <p className="errorMessage">{this.state.errorMessage}</p>
         <div className="row">
           <div className="input-field col s12">
             <input
