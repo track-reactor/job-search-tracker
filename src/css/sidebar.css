@@ -1,0 +1,9 @@
+.sidebar {
+	display: inline-block;
+ 	width: 16%;
+  margin-left: 25px;
+  margin-top: 5px;
+}
+.sidebar-title {
+  font-size: 14px;
+}

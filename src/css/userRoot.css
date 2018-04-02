@@ -1,0 +1,20 @@
+.userRootBodyContainer {
+  margin: 5px;
+  width: 80%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.userRootContent {
+	
+}
+
+
+@media only screen and (max-width: 762px) {
+  .userRootBodyContainer {
+  	  margin: 5px;
+	  width: 98%;
+	  display: inline-block;
+	  vertical-align: top;
+  }
+}

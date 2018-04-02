@@ -10,9 +10,12 @@ type Props = {
 	children: any
 };
 
-class Index extends React.Component<Props> {
-	_loginClickHandler() {
-		browserHistory.push('/dashboard/statistics');
+class Auth extends React.Component<Props> {
+
+	componentWillMount() {
+		if (this.props.location.pathname === '/') {
+			browserHistory.push('/login');
+		}
 	}
 
 	_buttonChoiceClick(choice) {
@@ -25,11 +28,9 @@ class Index extends React.Component<Props> {
 
 	render() {
 		const {children, location} = this.props;
-		if (location.pathname === '/') {
-			browserHistory.push('/login');
-		}
 		return (
 			<div className="main">
+				<div className="header">JobSearch Tracker</div>
 				<div className="choiceBtns">
 					<a className="waves-effect waves-light btn" onClick={this._buttonChoiceClick.bind(this, constants.choiceBtns.LOGIN)}><i className="material-icons left">
 						cloud</i>Login
@@ -41,19 +42,9 @@ class Index extends React.Component<Props> {
 				<div className="row mainContainer">
 				{children}
 				</div>
-				<div className="login-btn">
-					<button
-						className="btn waves-effect waves-light"
-						onClick={this._loginClickHandler.bind(this)}
-						type="submit"
-						name="action">
-						SEND
-							<i className="material-icons right">send</i>
-					</button>
-				</div>
 			</div>
 		)
 	}
 }
 
-module.exports = Index
+module.exports = Auth

@@ -1,10 +1,10 @@
 var mysql = require('mysql');
-
+var config = require('./config');
 //Configuration for mysql db
-const HOST = 'localhost';
-const USER = 'user';
-const PASSWORD = 'password';
-const DATABASE = 'database';
+const HOST = config.host;
+const USER = config.user;
+const PASSWORD = config.password;
+const DATABASE = config.database;
 
 var connection = mysql.createConnection({
   host     : HOST,
