@@ -10,7 +10,13 @@ type Props = {
 	children: any
 };
 
-class Index extends React.Component<Props> {
+class Auth extends React.Component<Props> {
+
+	componentWillMount() {
+		if (this.props.location.pathname === '/') {
+			browserHistory.push('/login');
+		}
+	}
 
 	_buttonChoiceClick(choice) {
 		if (choice === constants.choiceBtns.LOGIN) {
@@ -22,9 +28,6 @@ class Index extends React.Component<Props> {
 
 	render() {
 		const {children, location} = this.props;
-		if (location.pathname === '/') {
-			browserHistory.push('/login');
-		}
 		return (
 			<div className="main">
 				<div className="header">JobSearch Tracker</div>
@@ -44,4 +47,4 @@ class Index extends React.Component<Props> {
 	}
 }
 
-module.exports = Index
+module.exports = Auth

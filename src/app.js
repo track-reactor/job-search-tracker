@@ -8,7 +8,7 @@ const {
   Route,
   Router,
 } = require('react-router');
-import Index from './index';
+import Auth from './auth';
 import Login from './view/login';
 import Signup from './view/signup';
 import UserRoot from './userRoot';
@@ -21,7 +21,7 @@ class App extends React.Component<Props> {
 	render() {
 		return (
 			<Router history={browserHistory}>
-					<Route path="/" component={Index}>
+					<Route path="/" component={Auth}>
 						<Route path="login" component={Login} />
 						<Route path="signup" component={Signup}/>
 					</Route>

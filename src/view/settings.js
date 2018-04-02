@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 
 class Settings extends React.Component {
   render() {

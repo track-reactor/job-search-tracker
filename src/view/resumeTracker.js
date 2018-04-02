@@ -1,6 +1,7 @@
-import React from 'React';
+import React from 'react';
 import $ from 'jquery';
 import {postRequest, getRequest} from '../utils/APIUtils';
+import { Modal, Button, Row, Input, Col, Chip, Tag } from 'react-materialize';
 
 require('../css/resumeTracker.css');
 
@@ -27,7 +28,7 @@ class ResumeTracker extends React.Component {
   _onSubmitClick(e) {
     e.preventDefault();
     let payLoad = {
-      inputUser: this.state.inputUser,
+      company: this.state.company,
       inputStatus: this.state.inputStatus
     }
     // console.log('Success POST! Data: ', payLoad);
@@ -40,13 +41,30 @@ class ResumeTracker extends React.Component {
   }
 
   render() {
-    const { inputUser, inputStatus, tableUser, tableStatus } = this.state;
+    const { company, inputStatus, tableUser, tableStatus } = this.state;
     console.log(this.state)
 
     return (
       <div>
         <div className="dashboard">
           <div className="progress-title">Progress Tracker</div>
+
+          <Row>
+            <Col s={12}>
+              <Chip>
+                <i className="progress-img tiny material-icons circle green">timelapse</i>
+                pending within 10 Days
+              </Chip>
+              <Chip>
+                <i className="progress-img tiny material-icons circle yellow">timelapse</i>
+                pending within 20 Days
+              </Chip>
+              <Chip>
+                <i className="progress-img tiny material-icons circle red">timelapse</i>
+                pending within 30 Days
+              </Chip>
+            </Col>
+          </Row>
 
           <div className="row boxCard">
             <div className="col s12 m4">
@@ -93,24 +111,39 @@ class ResumeTracker extends React.Component {
             </div>
           </div>
 
-          <div className="table-input">
-            <p>----ADD DATA----</p>
-            <form>
-              Add User Name: 
-              <input 
-                type="text" 
-                value={inputUser}
-                onChange={(e) => {this._onInputChange.call(this, e.target.value, 'inputUser')}}>
-              </input>
-              Add Status: 
-              <input 
-                type="text" 
-                value={inputStatus}
-                onChange={(e) => {this._onInputChange.call(this, e.target.value, 'inputStatus')}}>
-              </input> 
-              <button onClick={this._onSubmitClick.bind(this)}>Send</button>
-            </form>
-          </div>
+          <Modal
+            header='ADD NEW JOB'
+            fixedFooter
+            trigger={<Button>Add New Job Search</Button>}
+            actions={<Button onClick={this._onSubmitClick.bind(this)}>Send</Button>}>
+            <div className="table-input">
+              <Row>
+                  <Input 
+                    s={6} 
+                    label="Company" 
+                    value={company}
+                    onChange={(e) => {this._onInputChange.call(this, e.target.value, 'inputUser')}}
+                  />
+                  <Input 
+                    s={6} 
+                    label="Position" 
+                  />
+                  <Input 
+                    s={6} 
+                    label="Status" 
+                    value={inputStatus}
+                    onChange={(e) => {this._onInputChange.call(this, e.target.value, 'inputStatus')}}
+                  />
+                  <Input s={6} label="Salary" />
+                  <Input s={6} label="Location" />
+                  <Input s={6} label="Link" />
+                  <Input s={6} label="Contact" />
+                  <Input s={6} label="Referral" />
+              </Row>
+
+              
+            </div>
+          </Modal>
 
           <div className="table-username">{tableUser}</div>
           <div className="table-status">{tableStatus}</div>

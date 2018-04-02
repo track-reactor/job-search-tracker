@@ -1,4 +1,4 @@
-import React from 'React';
+import React from 'react';
 import DashBoard from '../components/dashboard';
 
 class Statistics extends React.Component {

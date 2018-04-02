@@ -3,6 +3,7 @@ const path = require('path');
 const parser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const db = require('../db/db.js');
 
 const app = express();
 const PORT = 3000;

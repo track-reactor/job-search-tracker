@@ -48,7 +48,7 @@ class Signup extends React.Component<Props> {
             type="text"
             className="validate">
           </input>
-          <label for="userName">User Name</label>
+          <label htmlFor="userName">User Name</label>
         </div>
       </div>
       <div className="row">
@@ -60,7 +60,7 @@ class Signup extends React.Component<Props> {
             type="password"
             className="validate">
           </input>
-          <label for="userName">Password</label>
+          <label htmlFor="userName">Password</label>
         </div>
       </div>
       <div className="row">
@@ -72,7 +72,7 @@ class Signup extends React.Component<Props> {
             type="password"
             className={confirmPasswordError ? 'validate error' : 'validate'}>
           </input>
-          <label for="userName">Confirm Password</label>
+          <label htmlFor="userName">Confirm Password</label>
         </div>
       </div>
       </div>

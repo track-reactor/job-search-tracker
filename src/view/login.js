@@ -24,21 +24,25 @@ class Login extends React.Component<Props> {
   }
 
   _loginClickHandler() {
-    let emptyCheck = (this.state.userName === '' || this.state.password === '')
-    if (!emptyCheck) {
-      let payLoad = {
-        username: this.state.userName,
-        password: this.state.password
-      }
+    // ------------User Check--------------
+    // let emptyCheck = (this.state.userName === '' || this.state.password === '')
+    // if (!emptyCheck) {
+    //   let payLoad = {
+    //     username: this.state.userName,
+    //     password: this.state.password
+    //   }
 
-      postRequest('/login', payLoad, (err, data) => {
-        if (data.success) {
-          browserHistory.push('/dashboard/statistics');
-        } else {
-          // Error Message
-        }
-      })
-    }
+    //   postRequest('/login', payLoad, (err, data) => {
+    //     if (data.success) {
+    //       browserHistory.push('/dashboard/statistics');
+    //     } else {
+    //       // Error Message
+    //     }
+    //   })
+    // }
+
+    // -----------DEV Testing--------------
+    browserHistory.push('/dashboard/statistics');
   }
 
 	render() {
@@ -54,7 +58,7 @@ class Login extends React.Component<Props> {
               type="text"
               className="validate">
             </input>
-            <label for="userName">User Name</label>
+            <label htmlFor="userName">User Name</label>
           </div>
         </div>
         <div className="row">
@@ -66,7 +70,7 @@ class Login extends React.Component<Props> {
               type="password"
               className="validate">
             </input>
-            <label for="userName">Password</label>
+            <label htmlFor="userName">Password</label>
           </div>
         </div>
         <div className="login-btn">
