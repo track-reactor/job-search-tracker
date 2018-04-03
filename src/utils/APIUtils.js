@@ -24,9 +24,11 @@ export const postRequest = (endpoint, params, cb) => {
 	  data: JSON.stringify(params),
 	  contentType: 'application/json',
 		success: (data) => {
+			console.log('POST Success!!!!')
 			cb(null, data);
 		},
 		error: (error) => {
+			console.log('POST Error!!!!!')
 			cb(error, null);
 		}
 	})

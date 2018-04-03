@@ -14,7 +14,8 @@ class Login extends React.Component<Props> {
     super(props);
     this.state = {
       userName: '',
-      password: ''
+      password: '',
+      errorMessage: ''
     }
   }
 
@@ -25,32 +26,45 @@ class Login extends React.Component<Props> {
 
   _loginClickHandler() {
     // ------------User Check--------------
-    // let emptyCheck = (this.state.userName === '' || this.state.password === '')
-    // if (!emptyCheck) {
-    //   let payLoad = {
-    //     username: this.state.userName,
-    //     password: this.state.password
-    //   }
+    let emptyCheck = (this.state.userName === '' || this.state.password === '')
+    if (!emptyCheck) {
+      let payLoad = {
+        username: this.state.userName,
+        password: this.state.password
+      }
 
-    //   postRequest('/login', payLoad, (err, data) => {
-    //     if (data.success) {
-    //       browserHistory.push('/dashboard/statistics');
-    //     } else {
-    //       // Error Message
-    //     }
-    //   })
-    // }
+      postRequest('/login', payLoad, (err, data) => {
+        console.log('LOGIN-----data: ', data)
+        if (err) {
+          this.setState({
+            errorMessage: 'Incorrect Username or Password'
+          })
+        }
+        if (data.success) {
+          this.setState({
+            errorMessage: ''
+          })
+          browserHistory.push('/dashboard/statistics');
+        } else {
+          this.setState({
+            errorMessage: 'Incorrect Username or Password'
+          })
+        }
+      })
+    }
 
     // -----------DEV Testing--------------
-    browserHistory.push('/dashboard/statistics');
+    // browserHistory.push('/dashboard/statistics');
   }
 
 	render() {
     const { userName, password } = this.state;
 		return (
 		  <div>
+        <p className="errorMessage">{this.state.errorMessage}</p>
         <div className="row">
           <div className="input-field col s12">
+            <i className="material-icons prefix">account_circle</i>
             <input
               id="userName"
               value={userName}
@@ -63,6 +77,7 @@ class Login extends React.Component<Props> {
         </div>
         <div className="row">
           <div className="input-field col s12">
+            <i className="material-icons prefix">lock</i>
             <input
               id="password"
               value={password}
