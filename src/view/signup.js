@@ -38,31 +38,52 @@ class Signup extends React.Component<Props> {
   }
 
   _onModalCloseClick() {
-    browserHistory.push('/login');
+    let emptyCheck = (this.state.userName === '' || this.state.password === '' || this.state.confirmPassword === '')
+    if (!emptyCheck && !this.state.confirmPasswordError) {
+      let payLoad = {
+        username: this.state.userName,
+        password: this.state.password
+      }
+
+      postRequest('/login', payLoad, (err, data) => {
+        if (data.success) {
+          this.setState({
+            errorMessage: ''
+          })
+          browserHistory.push('/dashboard/statistics');
+        } else {
+          this.setState({
+            errorMessage: 'Incorrect Username or Password'
+          })
+        }
+      })
+    }
+
+    // browserHistory.push('/login');
   }
 
   _signupClickHandler() {
     //-----------Check and POST Req-----------
-    // let emptyCheck = (this.state.userName === '' || this.state.password === '' || this.state.confirmPassword === '')
-    // if (!emptyCheck && !this.state.confirmPasswordError) {
-    //   let payLoad = {
-    //     username: this.state.userName,
-    //     password: this.state.password
-    //   }
+    let emptyCheck = (this.state.userName === '' || this.state.password === '' || this.state.confirmPassword === '')
+    if (!emptyCheck && !this.state.confirmPasswordError) {
+      let payLoad = {
+        username: this.state.userName,
+        password: this.state.password
+      }
 
-    //   postRequest('/signup', payLoad, (err, data) => {
-    //     if (data.success) {
-    //       $('#success-signup').modal('open');
-    //     } else {
-    //       this.setState({
-    //         errorMessage: 'Username Already Exist!'
-    //       })
-    //     }
-    //   })
-    // }
+      postRequest('/signup', payLoad, (err, data) => {
+        if (data.success) {
+          $('#success-signup').modal('open');
+        } else {
+          this.setState({
+            errorMessage: 'Username Already Exist!'
+          })
+        }
+      })
+    }
 
     //-------------DEV Testing---------------
-    $('#success-signup').modal('open')
+    // $('#success-signup').modal('open')
   }
 
 	render() {
@@ -71,15 +92,19 @@ class Signup extends React.Component<Props> {
     
 		return (
       <div>
+
         <Modal
           id="success-signup"
           header="Thank you for Signing Up!"
-          actions={<Button onClick={this._onModalCloseClick.bind(this)}>Redirect to LOGIN page</Button>}>
+          actions={<Button onClick={this._onModalCloseClick.bind(this)}>LOGIN</Button>}>
           Welcome {this.state.userName}! Best of luck on your job search!
         </Modal>
+
         <p className="errorMessage">{this.state.errorMessage}</p>
+
         <div className="row">
           <div className="input-field col s12">
+            <i className="material-icons prefix">account_circle</i>
             <input
               id="userName"
               value={userName}
@@ -92,6 +117,7 @@ class Signup extends React.Component<Props> {
         </div>
         <div className="row">
           <div className="input-field col s12">
+            <i className="material-icons prefix">lock</i>
             <input
               id="password"
               value={password}
@@ -104,6 +130,7 @@ class Signup extends React.Component<Props> {
         </div>
         <div className="row">
           <div className="input-field col s12">
+            <i className="material-icons prefix">enhanced_encryption</i>
             <input
               id="confirmPassword"
               value={confirmPassword}
